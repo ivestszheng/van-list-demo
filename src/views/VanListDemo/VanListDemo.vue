@@ -54,16 +54,22 @@ function onLoad() {
     list.value = [];
     isRefreshing.value = false;
   }
-  /** 
+  /**
    * 异步更新数据,
    * setTimeout 仅做示例，真实场景中一般为 ajax 请求,
    * 此处模拟真实的分页查询处理。
    * 搜索的逻辑不具体展开，只简单处理。
-   **/ 
+   **/
   setTimeout(() => {
     if (queryCondition.searchContent) {
-      list.value.length = 0;
-      list.value.push(Number(queryCondition.searchContent));
+        // 这个条件只是模拟出查询的效果，没有什么现实意义
+      if (
+        Number(queryCondition.searchContent) > 0 &&
+        Number(queryCondition.searchContent) <= totalNum
+      ) {
+        list.value.length = 0;
+        list.value.push(Number(queryCondition.searchContent));
+      }
     } else {
       for (let i = 0; i < queryCondition.size; i++) {
         list.value.push(list.value.length + 1);
